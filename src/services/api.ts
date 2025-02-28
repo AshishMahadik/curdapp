@@ -14,8 +14,18 @@ export async function register(data:any) {
 }
 
 export async function refreshToken() {
-    const login = await axios.get(`${url}/auth/refresh-token`,{withCredentials:true});
+    const login = await axios.get(`${url}/auth/refresh-token`,{withCredentials:true, timeout: 1000});
     return login;
+}
+
+export async function self(axiosInstance:AxiosInstance) {
+    const user = await axiosInstance.get(`/auth/self`,{withCredentials:true});
+    return user.data.user;
+}
+
+export async function logout(axiosInstance:AxiosInstance) {
+    const user = await axiosInstance.get(`/auth/logout`,{withCredentials:true});
+    return user;
 }
 
 export async function getEmployees(axiosInstance:AxiosInstance) {

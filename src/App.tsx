@@ -6,16 +6,23 @@ import { useContext } from 'react';
 import { AuthContext } from './context/authProvider';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 
 const routes = [
   { path: '/login', element: <Login /> },
   { path: '/signup', element: <Signup /> },
   {
     path: '/app', element: <ProtectedRoute />,
-    children: [{
-      path: 'home',
-      element: <Home />
-    }]
+    children: [
+      {
+        path: 'home',
+        element: <Home />
+      },
+      {
+        path: 'profile',
+        element: <Profile />
+      }
+    ]
   },
 ]
 function App() {
@@ -33,7 +40,7 @@ function App() {
               })}
             </Route>
           )}
-          {/* <Route path='*' element={<Navigate to={token ? '/home' : '/login'} />}></Route> */}
+          <Route path='*' element={<Navigate to={token ? '/app/home' : '/login'} />}></Route>
         </Routes>
       </div>
     </>

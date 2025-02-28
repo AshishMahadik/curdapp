@@ -9,16 +9,16 @@ function Home() {
     // const [user, setUser] = useState<>();
 
     useEffect(() => {
-        const getEmployees = async () => {
-            const response = await axiosPri.get(`/employees`, { withCredentials: true });
-            setEmployees(response.data);
-        }
-        getEmployees();
+        // const getEmployees = async () => {
+        //     const response = await axiosPri.get(`/employees`, { withCredentials: true });
+        //     setEmployees(response.data);
+        // }
+        // getEmployees();
         // console.log(employees);
     }, []);
 
     useEffect(() => {
-        console.log('employees', employees);
+        // console.log('employees', employees);
     }, [employees]);
 
     // useEffect(() => {
@@ -38,7 +38,7 @@ function Home() {
             })}
         </div>
         <div>
-            <Button variant={'destructive'}>Logout</Button>
+            
         </div>
     </>
 }

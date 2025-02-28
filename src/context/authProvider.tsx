@@ -1,4 +1,4 @@
-import axios from "axios";
+import { refreshToken } from "@/services/api";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,8 +12,9 @@ export function AuthProvider({ children }: any) {
     useEffect(() => {
         const genRandomKey = async () => {
             try {
-                const tokenObj = (await axios.get('http://localhost:8080/api/auth/refresh-token', { withCredentials: true }));
+                const tokenObj = await refreshToken();
                 setToken(tokenObj.data.accessToken);
+                console.log(token);
             } catch (e) {
                 nav('/login');
             } finally {

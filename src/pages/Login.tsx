@@ -13,8 +13,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Link, useNavigate } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
-import { useAxios } from "@/hooks/useAxios"
+import { useContext } from "react"
 import { AuthContext } from "@/context/authProvider"
 import { login } from "@/services/api"
 
@@ -37,14 +36,15 @@ function Login() {
         },
     })
 
-    const { token, setToken } = useContext(AuthContext);
+    const { setToken } = useContext(AuthContext);
     const nav = useNavigate();
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             const user = await login(values);
-            setToken(user.accessToken);
-            nav('/home');
+            setToken(user.token);
+            console.log(user);
+            nav('/app/home');
         } catch (e) {
             console.log(e);
         }
