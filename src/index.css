@@ -46,12 +46,12 @@
   --secondary: #3D3D3D;
   --secondary-foreground: #F5ECD5;
   --muted: #3D3D3D;
-  --muted-foreground: #F5ECD5;
+  --muted-foreground: #f5ecd5bb;
   --accent: #3D3D3D;
   --accent-foreground: #F5ECD5;
   --destructive: #578E7E;
   --destructive-foreground: #F5ECD5;
-  --border: #F5ECD5;
+  --border: #f5ecd52c;
   --input: #F5ECD5;
   --ring: #F5ECD5;
   --chart-1: hsl(220 70% 50%);

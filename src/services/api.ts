@@ -14,7 +14,7 @@ export async function register(data:any) {
 }
 
 export async function refreshToken() {
-    const login = await axios.get(`${url}/auth/refresh-token`,{withCredentials:true, timeout: 1000});
+    const login = await axios.get(`${url}/auth/refresh-token`,{withCredentials:true, timeout: 5000});
     return login;
 }
 

@@ -9,10 +9,10 @@ export default function Profile() {
 
     const nav = useNavigate();
     const axiosPri = useAxios();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState<any>();
 
     useEffect(()=>{
-        const getSelf = async() => console.log(await self(axiosPri));
+        const getSelf = async() => {setUser(await self(axiosPri))};
         getSelf();
     },[])
     useEffect(() => {
@@ -27,17 +27,19 @@ export default function Profile() {
     }
 
     return <>
-        <div>
+        <div className="w-68 mx-auto my-24">
             <Card>
                 <CardHeader>
                     <CardTitle>Profile</CardTitle>
-                    <CardDescription>Let's See Yourself</CardDescription>
+                    {/* <CardDescription>Let's See Yourself</CardDescription> */}
                 </CardHeader>
-                <CardContent>
-                    <p>Card Content</p>
+                <CardContent className="">
+                    <p>Name: {user?.name}</p>
+                    <p>Email: {user?.email}</p>
+                    <p>Role: {user?.role}</p>
                 </CardContent>
                 <CardFooter>
-                    <Button variant={'destructive'} onClick={logoutUser}>Logout</Button>
+                    <Button className="w-full" variant={'destructive'} onClick={logoutUser}>Logout</Button>
                 </CardFooter>
             </Card>
         </div>
