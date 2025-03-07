@@ -64,13 +64,13 @@ function Home() {
         console.log(employees);
     }, []);
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-            try {
-                console.log('user');
-            } catch (e) {
-                console.log(e);
-            }
+    async function onSubmit(values:any) {
+        console.log('values', values);
+        try {
+        } catch (e) {
+            console.log(e);
         }
+    }
 
     return <>
         <div className="my-12 mx-64">
@@ -86,9 +86,9 @@ function Home() {
                                 Add a new Employee.
                             </DialogDescription> */}
                         </DialogHeader>
-                        
+
                         <Form {...employeeForm}>
-                            <form onSubmit={employeeForm.handleSubmit(onSubmit)} className="space-y-6 ">
+                            <form onSubmit={employeeForm.handleSubmit(onSubmit)} className="space-y-6">
                                 <FormField
                                     control={employeeForm.control}
                                     name="email"
@@ -174,41 +174,41 @@ function Home() {
                                         <Button variant={"outline"}>Edit</Button>
                                     </DialogTrigger>
                                     <DialogContent className="sm:max-w-[425px]">
-                                        <DialogHeader>
-                                            <DialogTitle>Edit profile</DialogTitle>
-                                            <DialogDescription>
-                                                Make changes to your profile here. Click save when you're done.
-                                            </DialogDescription>
-                                        </DialogHeader>
-                                        <form onSubmit={employeeForm.handleSubmit(onSubmit)} className="grid gap-4 py-4"  {...employeeForm}>
+                                        <form onSubmit={employeeForm.handleSubmit(onSubmit)} className="grid gap-4 py-4" >
+                                            <DialogHeader>
+                                                <DialogTitle>Edit profile</DialogTitle>
+                                                <DialogDescription>
+                                                    Make changes to your profile here. Click save when you're done.
+                                                </DialogDescription>
+                                            </DialogHeader>
                                             <div className="grid grid-cols-4 items-center gap-4">
                                                 <Label htmlFor="name" className="text-right">
                                                     Name
                                                 </Label>
-                                                <Input id="name" value={item.name} className="col-span-3" />
+                                                <Input id="name"  {...employeeForm.register('name')} className="col-span-3" />
                                             </div>
                                             <div className="grid grid-cols-4 items-center gap-4">
                                                 <Label htmlFor="email" className="text-right">
                                                     Email
                                                 </Label>
-                                                <Input id="email" value={item.email} className="col-span-3" />
+                                                <Input id="email" {...employeeForm.register('email')} className="col-span-3" />
                                             </div>
                                             <div className="grid grid-cols-4 items-center gap-4">
                                                 <Label htmlFor="role" className="text-right">
                                                     Role
                                                 </Label>
-                                                <Input id="role" value={item.position} className="col-span-3" />
+                                                <Input id="role" {...employeeForm.register('role')} className="col-span-3" />
                                             </div>
                                             <div className="grid grid-cols-4 items-center gap-4">
                                                 <Label htmlFor="department" className="text-right">
                                                     Department
                                                 </Label>
-                                                <Input id="department" value={item.department} className="col-span-3" />
+                                                <Input id="department" {...employeeForm.register('department')} className="col-span-3" />
                                             </div>
+                                            <DialogFooter>
+                                                <Button type="submit" variant={"outline"}>Save changes</Button>
+                                            </DialogFooter>
                                         </form>
-                                        <DialogFooter>
-                                            <Button type="submit" variant={"outline"}>Save changes</Button>
-                                        </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
 
